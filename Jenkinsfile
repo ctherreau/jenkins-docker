@@ -1,13 +1,13 @@
 pipeline {
     agent any 
     environment {
-    DOCKERHUB_CREDENTIALS = credentials('karim-dockerhub')
+    DOCKERHUB_CREDENTIALS = credentials('therch')
     }
     stages { 
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t karimsahebettaba/formation-devops:$BUILD_NUMBER .'
+                sh 'docker build -t therch/formation_quality:$BUILD_NUMBER .'
             }
         }
         stage('login to dockerhub') {
@@ -17,7 +17,7 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push karimsahebettaba/formation-devops:$BUILD_NUMBER'
+                sh 'docker push therch/formation_quality:$BUILD_NUMBER'
             }
         }
 }
